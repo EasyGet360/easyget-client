@@ -1,14 +1,12 @@
-import { Fragment, useCallback, useState } from "react";
+import { Fragment } from "react";
 import {
   Card,
   Typography,
-  Anchor,
   Row,
   Col,
 } from "antd";
 import { restaurant_menu } from '../../Models/instances'
-const { Link, Title, Paragraph } = Typography;
-const { Link: AnchorLink } = Anchor;
+const { Title, Paragraph } = Typography;
 
 
 export const Category = (props: any) => {
@@ -37,6 +35,7 @@ export const Category = (props: any) => {
                     width="100%"
                     style={{ maxWidth: "150px" }}
                     src={product.image}
+                    alt='La concha de la lora'
                   />
                 )}
               </Col>

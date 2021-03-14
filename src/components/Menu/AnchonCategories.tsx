@@ -1,6 +1,5 @@
 import {
     Tabs,
-    Select,
     Anchor,
 
 } from "antd";
