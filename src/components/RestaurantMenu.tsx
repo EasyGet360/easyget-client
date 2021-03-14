@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import {
   Layout,
   Card,
@@ -8,15 +8,17 @@ import {
   Select,
   Badge,
   List,
-  Avatar,
+  Anchor,
   Row,
   Col,
   Space,
 } from "antd";
+
 import { ShoppingCartOutlined, InstagramOutlined } from "@ant-design/icons";
 import data from "../data.json";
 
 const { Link, Title, Paragraph } = Typography;
+const { Link: AnchorLink } = Anchor;
 const { Meta } = Card;
 const { Search } = Input;
 const { Option } = Select;
@@ -46,23 +48,11 @@ const restaurant_menu: Category[] = [
     name: "Para comer",
     description: "Se pueden pedir para llevar a casa.",
     products: [
-      // {
-      //   name: "PROMOCIÓN PARA PICAR",
-      //   description: `Bebida natural (limonada, pomelada, limonada de piña y perejil)
-      // + quiche artesanal (bacon o salmón ahumado)`,
-      //   price: 5,
-      // },
       {
-        name: "Quiche de bacon",
-        image:
-          "https://lafrancachela.com/wp-content/uploads/2020/03/EnsaladillaH.jpg",
-        price: 2.5,
-        allergens: [
-          {
-            name: "trigo",
-            icon: "trigo",
-          },
-        ],
+        name: "PROMOCIÓN PARA PICAR",
+        description: `Bebida natural (limonada, pomelada, limonada de piña y perejil)
+      + quiche artesanal (bacon o salmón ahumado)`,
+        price: 5,
       },
       {
         name: "Quiche de bacon",
@@ -180,12 +170,19 @@ const restaurant_menu: Category[] = [
   },
 ];
 
+const generateAnchor = (text: string): string => {
+  return `${encodeURIComponent(text)}`;
+};
+
 const RestaurantMenu = () => {
   const [table, setTable] = useState<string>();
+  const [link, setLink] = useState<string>();
 
   const handleChange = useCallback(() => {
     console.log(`selected ${table}`);
   }, [table]);
+
+  console.log(link);
 
   return (
     <Card
@@ -236,7 +233,56 @@ const RestaurantMenu = () => {
                 alert("holiii");
               }}
             />
-            <Tabs defaultActiveKey="1">
+            <Anchor onChange={setLink} className="ant-anchor-tabs">
+              <Tabs activeKey={link}>
+                {restaurant_menu.map((category, i) => (
+                  <TabPane
+                    key={generateAnchor(`${category.name}_${i}`)}
+                    tab={
+                      <AnchorLink
+                        href={`#${generateAnchor(`${category.name}_${i}`)}`}
+                        title={category.name}
+                      />
+                    }
+                  ></TabPane>
+                ))}
+              </Tabs>
+            </Anchor>
+            {restaurant_menu.map((category, i) => (
+              <div id={generateAnchor(`${category.name}_${i}`)} key={i}>
+                <Title level={3}>{category.name}</Title>
+                <Paragraph>{category.description}</Paragraph>
+                {category.products.map((product) => (
+                  <Card
+                    key={product.name}
+                    hoverable
+                    style={{ width: "100%" }}
+                    onClick={() => alert(product.name)}
+                  >
+                    <Row justify="space-between" style={{ width: "100%" }}>
+                      <Col>
+                        <Title level={5}>{product?.name}</Title>
+
+                        {product?.description}
+                        <Title level={5}>{product?.price}</Title>
+                      </Col>
+
+                      <Col>
+                        {product.image && (
+                          <img
+                            width="100%"
+                            style={{ maxWidth: "150px" }}
+                            src={product.image}
+                          />
+                        )}
+                      </Col>
+                    </Row>
+                  </Card>
+                ))}
+              </div>
+            ))}
+
+            {/* <Tabs defaultActiveKey="1">
               {restaurant_menu.map((category, i) => (
                 <TabPane tab={category.name} key={i}>
                   <Title level={3}>{category.name}</Title>
@@ -271,6 +317,7 @@ const RestaurantMenu = () => {
                 </TabPane>
               ))}
             </Tabs>
+          */}
           </>
         )}
       </Space>
