@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Layout, Card, Typography, Badge, Select } from "antd";
+import RestaurantMenu from "./components/RestaurantMenu";
+import data from "./data.json";
 
-function App() {
+const { Link } = Typography;
+const { Header, Content, Footer } = Layout;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout className="layout">
+      {/* <Header></Header> */}
+      <Content>
+        <RestaurantMenu></RestaurantMenu>
+      </Content>
+    </Layout>
   );
-}
+};
 
 export default App;
