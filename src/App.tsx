@@ -1,15 +1,13 @@
-import { Layout, Card, Typography, Badge, Select } from "antd";
-import RestaurantMenu from "./components/RestaurantMenu";
-import "./App.css";
-import data from "./data.json";
+import React from 'react';
+import { Layout } from 'antd';
+import RestaurantMenu from './components/RestaurantMenu';
+import './App.css';
 
-const { Link } = Typography;
-const { Header, Content, Footer } = Layout;
+const { Content } = Layout;
 
-const App = () => {
+const App: React.FunctionComponent = () => {
   return (
     <Layout className="layout">
-      {/* <Header></Header> */}
       <Content>
         <RestaurantMenu></RestaurantMenu>
       </Content>
