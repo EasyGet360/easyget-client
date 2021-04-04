@@ -1,16 +1,15 @@
-import React, { Fragment, useContext } from 'react';
-import { Card, Typography, Row, Col } from 'antd';
-import { restaurant_menu } from '../../models/instances';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Card, Typography, Row, Col, Space } from 'antd';
 import { RestaurantMenuContext } from '../RestaurantMenu';
 const { Title, Paragraph } = Typography;
 
-export const Category: React.FunctionComponent = () => {
-  const restaurantMenu = useContext(RestaurantMenuContext);
+export const Categories: React.FunctionComponent = () => {
+  const { generateAnchor, menu } = useContext(RestaurantMenuContext);
 
   return (
-    <Fragment>
-      {restaurant_menu.map((category, i) => (
-        <div id={restaurantMenu.generateAnchor(`${category.name}_${i}`)} key={i}>
+    <Space direction="vertical" size="large">
+      {menu.map((category, i) => (
+        <div id={generateAnchor(`${category.name}_${i}`)} key={i}>
           <Title level={3}>{category.name}</Title>
           <Paragraph>{category.description}</Paragraph>
           {category.products.map((product) => (
@@ -42,6 +41,6 @@ export const Category: React.FunctionComponent = () => {
           ))}
         </div>
       ))}
-    </Fragment>
+    </Space>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Category } from './types';
 export const restaurant_menu: Category[] = [
   {
@@ -60,19 +61,83 @@ export const restaurant_menu: Category[] = [
     ],
   },
   {
-    name: 'Para comer',
-    description: 'Se pueden pedir para llevar a casa.',
+    name: 'Postres',
+    description: 'Se pueden pedir para llevar a casa',
     products: [
       {
-        name: 'PROMOCIÓN PARA PICAR',
-        description: `Bebida natural (limonada, pomelada, limonada de piña y perejil)
-        + quiche artesanal (bacon o salmón ahumado)`,
+        name: 'Brownie',
+        description: `Brownie casero de chocolate. Inolvidable.`,
         price: 5,
       },
       {
-        name: 'Quiche de bacon',
-        image: 'https://lafrancachela.com/wp-content/uploads/2020/03/EnsaladillaH.jpg',
+        name: 'Tarta de lima',
+        description: `Tarta ligera de lima y crema de nata, con base crujiente de galleta.`,
         price: 2.5,
+        allergens: [
+          {
+            name: 'trigo',
+            icon: 'trigo',
+          },
+        ],
+      },
+      {
+        description: 'Bizcochos caseros',
+        name: `Bizcocho de naranja y semillas de amapola.`,
+        price: 2.5,
+        allergens: [
+          {
+            name: 'trigo',
+            icon: 'trigo',
+          },
+        ],
+      },
+      {
+        description: 'Bizcochos caseros',
+        name: `Bizcocho de arándanos y almendra.`,
+        price: 2.5,
+        allergens: [
+          {
+            name: 'trigo',
+            icon: 'trigo',
+          },
+        ],
+      },
+      {
+        description: 'Bizcochos caseros',
+        name: `Bizcocho de plátano y dátiles.`,
+        price: 2.5,
+        allergens: [
+          {
+            name: 'trigo',
+            icon: 'trigo',
+          },
+        ],
+      },
+      {
+        description: 'Bizcochos caseros',
+        name: `Bizcocho de cacao y avellanas.`,
+        price: 2.5,
+        allergens: [
+          {
+            name: 'trigo',
+            icon: 'trigo',
+          },
+        ],
+      },
+      {
+        description: 'Bizcochos caseros',
+        name: `Bizcocho vegano de plátano.`,
+        price: 2.5,
+        allergens: [
+          {
+            name: 'trigo',
+            icon: 'trigo',
+          },
+        ],
+      },
+      {
+        name: 'Croissant artesano',
+        price: 2,
         allergens: [
           {
             name: 'trigo',
