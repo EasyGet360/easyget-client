@@ -15,7 +15,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:fix": "tsc --noEmit && eslint '*/**/*.{js,ts,jsx,tsx,json}' --max-warnings 0 --fix"
+    "lint:fix": "tsc --noEmit && eslint '*/**/*.{js,ts,jsx,tsx,json}' --max-warnings 0 --fix",
+    "lint:fix:win": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "eslintConfig": {
     "extends": [
