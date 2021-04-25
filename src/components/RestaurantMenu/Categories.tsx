@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Card, Typography, Row, Col, Space } from 'antd';
 import { RestaurantMenuContext } from '../RestaurantMenu';
-import { CardProduct } from './ProductCard';
+import { ProductCard } from './ProductCard';
 
 const { Title, Paragraph } = Typography;
 
@@ -15,7 +15,7 @@ export const Categories: React.FunctionComponent = () => {
           <Title level={3}>{category.name}</Title>
           <Paragraph>{category.description}</Paragraph>
           {category.products.map((product, indx) => (
-            <CardProduct
+            <ProductCard
               name={product.name}
               description={product.description}
               price={product.price}

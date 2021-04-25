@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Product } from '../../models/types';
 const { Title } = Typography;
 
-export const CardProduct: React.FunctionComponent<Product> = ({
+export const ProductCard: React.FunctionComponent<Product> = ({
   name,
   description,
   price,
