@@ -1,6 +1,8 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Card, Typography, Row, Col, Space } from 'antd';
 import { RestaurantMenuContext } from '../RestaurantMenu';
+import { CardProduct } from './ProductCard';
+
 const { Title, Paragraph } = Typography;
 
 export const Categories: React.FunctionComponent = () => {
@@ -12,32 +14,14 @@ export const Categories: React.FunctionComponent = () => {
         <div id={generateAnchor(`${category.name}_${i}`)} key={i}>
           <Title level={3}>{category.name}</Title>
           <Paragraph>{category.description}</Paragraph>
-          {category.products.map((product) => (
-            <Card
-              key={product.name}
-              hoverable
-              style={{ width: '100%' }}
-              onClick={() => alert(product.name)}
-            >
-              <Row justify="space-between" style={{ width: '100%' }}>
-                <Col>
-                  <Title level={5}>{product?.name}</Title>
-
-                  {product?.description}
-                  <Title level={5}>{product?.price}</Title>
-                </Col>
-                <Col>
-                  {product.image && (
-                    <img
-                      width="100%"
-                      style={{ maxWidth: '150px' }}
-                      src={product.image}
-                      alt="La concha de la lora"
-                    />
-                  )}
-                </Col>
-              </Row>
-            </Card>
+          {category.products.map((product, indx) => (
+            <CardProduct
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              image={product.image}
+              key={indx}
+            />
           ))}
         </div>
       ))}
