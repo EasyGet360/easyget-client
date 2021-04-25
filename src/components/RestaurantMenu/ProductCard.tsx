@@ -1,7 +1,8 @@
+import React, { useState, useContext } from 'react';
+import BasketContext from '../../context/basket/basketContext';
 import { Card, Row, Col, Typography, Modal, Button, Tooltip } from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
-import { Product } from '../../models/types';
+import { Product, ProductBasket } from '../../models/types';
 const { Title } = Typography;
 
 export const ProductCard: React.FunctionComponent<Product> = ({
@@ -10,16 +11,23 @@ export const ProductCard: React.FunctionComponent<Product> = ({
   price,
   image,
 }) => {
+  const { addProduct, deleteProduct, products } = useContext(BasketContext);
+  console.log('🚀 ---------------------------------------------------------');
+  console.log('🚀 ~ file: ProductCard.tsx ~ line 15 ~ products', products);
+  console.log('🚀 ---------------------------------------------------------');
   const [modal1Visible, setModal1Visible] = useState<boolean>(false);
-  const [count, setCount] = useState<number>(0);
+  const [count, setCount] = useState<number>(1);
   const increase = (): void => {
     setCount(count + 1);
   };
-
+  const addToBasket = (product: ProductBasket): void => {
+    product['howMany'] = count;
+    addProduct(product);
+  };
   const decline = (): void => {
     let newCount = count - 1;
-    if (newCount < 0) {
-      newCount = 0;
+    if (newCount < 1) {
+      newCount = 1;
     }
     setCount(newCount);
   };
@@ -48,7 +56,6 @@ export const ProductCard: React.FunctionComponent<Product> = ({
             )}
           </Col>
         </Row>
-        {console.log('hello ', modal1Visible)}
       </Card>
       <Modal
         title={name}
@@ -82,7 +89,15 @@ export const ProductCard: React.FunctionComponent<Product> = ({
               icon={<MinusOutlined />}
             />
           </Tooltip>,
-          <Button key="back">Add to basket</Button>,
+          <Button
+            key="back"
+            onClick={() => {
+              addToBasket({ name, description, image, price, howMany: count });
+              setModal1Visible(false);
+            }}
+          >
+            Add to basket
+          </Button>,
         ]}
       >
         <React.Fragment>
