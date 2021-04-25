@@ -14,8 +14,8 @@ const BasketState = (props) => {
 
   const addProduct = (product) => {
     try {
-      const data = products.push(product);
-      dispatch({ type: ADD_PRODUCT, payload: data });
+      initialState.products.push(product);
+      dispatch({ type: ADD_PRODUCT, payload: initialState.products });
     } catch (error) {
       console.error(error);
     }
@@ -23,7 +23,7 @@ const BasketState = (props) => {
 
   const deleteProduct = (product) => {
     try {
-      const data = products.filter((productState) => product.id !== productState.id);
+      const data = initialState.products.filter((productState) => product.id !== productState.id);
       dispatch({ type: DELETE_PRODUCT, payload: data });
     } catch (error) {}
   };
