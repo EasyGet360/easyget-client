@@ -11,7 +11,14 @@ export type Product = {
   image?: string;
   allergens?: Allergen[];
 };
-
+export type ProductBasket = {
+  name: string;
+  description?: string;
+  price: number;
+  image?: string;
+  allergens?: Allergen[];
+  howMany: number;
+};
 export type Allergen = {
   name: string;
   icon: string;
