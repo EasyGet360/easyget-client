@@ -15,7 +15,7 @@ export const ProductCard: React.FunctionComponent<Product> = ({
   console.log('🚀 ---------------------------------------------------------');
   console.log('🚀 ~ file: ProductCard.tsx ~ line 15 ~ products', products);
   console.log('🚀 ---------------------------------------------------------');
-  const [modal1Visible, setModal1Visible] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [count, setCount] = useState<number>(1);
   const increase = (): void => {
     setCount(count + 1);
@@ -37,7 +37,7 @@ export const ProductCard: React.FunctionComponent<Product> = ({
         key={name}
         hoverable
         style={{ width: '100%' }}
-        onClick={() => setModal1Visible(!modal1Visible)}
+        onClick={() => setModalVisible(!modalVisible)}
       >
         <Row justify="space-between" style={{ width: '100%' }}>
           <Col>
@@ -62,9 +62,9 @@ export const ProductCard: React.FunctionComponent<Product> = ({
         bodyStyle={{ textAlign: 'center' }}
         centered
         width={500}
-        visible={modal1Visible && true}
-        onOk={() => setModal1Visible(false)}
-        onCancel={() => setModal1Visible(false)}
+        visible={modalVisible && true}
+        onOk={() => setModalVisible(false)}
+        onCancel={() => setModalVisible(false)}
         footer={[
           <Tooltip title="search" key="1" style={{ width: '1px' }}>
             <React.Fragment>
@@ -93,7 +93,7 @@ export const ProductCard: React.FunctionComponent<Product> = ({
             key="back"
             onClick={() => {
               addToBasket({ name, description, image, price, howMany: count });
-              setModal1Visible(false);
+              setModalVisible(false);
             }}
           >
             Add to basket
