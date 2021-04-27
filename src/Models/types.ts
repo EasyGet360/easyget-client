@@ -23,3 +23,7 @@ export type Allergen = {
   name: string;
   icon: string;
 };
+export type BasketProps = {
+  modalVisible: boolean;
+  setModalVisible: (modalVisible: boolean) => void;
+};
