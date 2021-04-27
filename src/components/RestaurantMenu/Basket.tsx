@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import BasketContext from '../../context/basket/basketContext';
+import { CardBasket } from './CardBasket';
 import { Card, Row, Col, Typography, Modal, Button, Tooltip } from 'antd';
-import { BasketProps } from '../../models/types';
+import { BasketProps, ProductBasket } from '../../models/types';
 const { Title } = Typography;
 
 export const Basket: React.FunctionComponent<BasketProps> = (props) => {
@@ -16,6 +17,16 @@ export const Basket: React.FunctionComponent<BasketProps> = (props) => {
       visible={props.modalVisible && true}
       onOk={() => props.setModalVisible(false)}
       onCancel={() => props.setModalVisible(false)}
-    ></Modal>
+    >
+      {products.map((product: ProductBasket, indx: number) => (
+        <CardBasket
+          description={product.description}
+          name={product.name}
+          price={product.price}
+          key={indx}
+          howMuch={product.howMuch}
+        />
+      ))}
+    </Modal>
   );
 };
