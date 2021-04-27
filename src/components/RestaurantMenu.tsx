@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Typography, Input, Space, Row, Col, Select, Badge } from 'antd';
+import { Card, Typography, Input, Space, Row, Col, Select, Badge, Button } from 'antd';
 
 import { InstagramOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import data from '../data.json';
 import { AnchorTabs } from './ant/AnchorTabs';
 import { Categories } from './RestaurantMenu/Categories';
+import { Basket } from './RestaurantMenu/Basket';
 import { restaurant_menu } from '../models/instances';
 
 const { Option } = Select;
@@ -24,6 +25,10 @@ const RestaurantMenu: React.FunctionComponent = () => {
   const [activeLink, setActiveLink] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [filteredMenu, setFilteredMenu] = useState(restaurant_menu);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  console.log('🚀 --------------------------------------------------------------------------');
+  console.log('🚀 ~ file: RestaurantMenu.tsx ~ line 29 ~ setModalVisible', setModalVisible);
+  console.log('🚀 --------------------------------------------------------------------------');
 
   const [searchableMenu] = useState(
     restaurant_menu.map((category) => {
@@ -91,7 +96,18 @@ const RestaurantMenu: React.FunctionComponent = () => {
             </Col>
             <Col>
               <Badge count={5}>
-                <ShoppingCartOutlined style={{ fontSize: '25px' }} />
+                <Button
+                  shape="circle"
+                  icon={<ShoppingCartOutlined style={{ fontSize: '25px' }} />}
+                  type="link"
+                  onClick={() => setModalVisible(!modalVisible)}
+                ></Button>
+                {modalVisible && (
+                  <Basket
+                    setModalVisible={() => setModalVisible(false)}
+                    modalVisible={modalVisible}
+                  />
+                )}
               </Badge>
             </Col>
           </Row>
