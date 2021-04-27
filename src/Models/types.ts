@@ -17,7 +17,7 @@ export type ProductBasket = {
   price: number;
   image?: string;
   allergens?: Allergen[];
-  howMany: number;
+  howMuch: number;
 };
 export type Allergen = {
   name: string;

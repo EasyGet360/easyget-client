@@ -21,7 +21,7 @@ export const ProductCard: React.FunctionComponent<Product> = ({
     setCount(count + 1);
   };
   const addToBasket = (product: ProductBasket): void => {
-    product['howMany'] = count;
+    product['howMuch'] = count;
     addProduct(product);
   };
   const decline = (): void => {
@@ -92,7 +92,7 @@ export const ProductCard: React.FunctionComponent<Product> = ({
           <Button
             key="back"
             onClick={() => {
-              addToBasket({ name, description, image, price, howMany: count });
+              addToBasket({ name, description, image, price, howMuch: count });
               setModalVisible(false);
             }}
           >
