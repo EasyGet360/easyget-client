@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
-import BasketContext from '../../context/basket/basketContext';
+import { v4 as uuidv4 } from 'uuid';
 import { Card, Row, Col, Typography, Modal, Button, Tooltip } from 'antd';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import { Product, ProductBasket } from '../../models/types';
+import BasketContext from '../../context/basket/basketContext';
 const { Title } = Typography;
 
 export const ProductCard: React.FunctionComponent<Product> = ({
@@ -12,9 +13,6 @@ export const ProductCard: React.FunctionComponent<Product> = ({
   image,
 }) => {
   const { addProduct, deleteProduct, products } = useContext(BasketContext);
-  console.log('🚀 ---------------------------------------------------------');
-  console.log('🚀 ~ file: ProductCard.tsx ~ line 15 ~ products', products);
-  console.log('🚀 ---------------------------------------------------------');
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [count, setCount] = useState<number>(1);
   const increase = (): void => {
@@ -71,10 +69,10 @@ export const ProductCard: React.FunctionComponent<Product> = ({
               <Button
                 type="primary"
                 style={{ float: 'left' }}
-                onClick={() => increase()}
+                onClick={() => decline()}
                 key="hols"
                 shape="circle"
-                icon={<PlusOutlined />}
+                icon={<MinusOutlined />}
               />
             </React.Fragment>
             <h2 style={{ float: 'left', textAlign: 'center', marginLeft: '2%', marginRight: '2%' }}>
@@ -84,15 +82,15 @@ export const ProductCard: React.FunctionComponent<Product> = ({
               style={{ float: 'left' }}
               type="primary"
               key="hols1"
-              onClick={() => decline()}
+              onClick={() => increase()}
               shape="circle"
-              icon={<MinusOutlined />}
+              icon={<PlusOutlined />}
             />
           </Tooltip>,
           <Button
             key="back"
             onClick={() => {
-              addToBasket({ name, description, image, price, howMuch: count });
+              addToBasket({ id: uuidv4(), name, description, image, price, howMuch: count });
               setModalVisible(false);
             }}
           >
