@@ -15,7 +15,7 @@ export const CardBasket: React.FunctionComponent<ProductBasket> = (product) => {
           <div>
             <Button
               style={{ marginLeft: 10 }}
-              onClick={() => deleteProduct(product.name)}
+              onClick={() => deleteProduct(product.id)}
               type="primary"
               icon={<CloseOutlined />}
             />

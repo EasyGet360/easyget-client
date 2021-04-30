@@ -20,9 +20,9 @@ const BasketState = (props) => {
     }
   };
 
-  const deleteProduct = (name) => {
+  const deleteProduct = (id) => {
     try {
-      const data = state.products.filter((product) => name !== product.name);
+      const data = state.products.filter((product) => id !== product.id);
       dispatch({ type: DELETE_PRODUCT, payload: data });
     } catch (error) {}
   };

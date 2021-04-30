@@ -20,6 +20,7 @@ export const Basket: React.FunctionComponent<BasketProps> = (props) => {
     >
       {products.map((product: ProductBasket, indx: number) => (
         <CardBasket
+          id={product.id}
           description={product.description}
           name={product.name}
           price={product.price}
