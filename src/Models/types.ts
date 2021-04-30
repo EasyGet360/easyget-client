@@ -12,6 +12,7 @@ export type Product = {
   allergens?: Allergen[];
 };
 export type ProductBasket = {
+  id: string;
   name: string;
   description?: string;
   price: number;
