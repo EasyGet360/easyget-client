@@ -56,7 +56,16 @@ export const ProductCard: React.FunctionComponent<Product> = ({
         </Row>
       </Card>
       <Modal
-        title={name}
+        title={
+          <>
+            <Row>
+              <Col span={11}>{name}</Col>
+              <Col span={5} offset={8}>
+                {`Total: ${price * count}$`}
+              </Col>
+            </Row>
+          </>
+        }
         bodyStyle={{ textAlign: 'center' }}
         centered
         width={500}

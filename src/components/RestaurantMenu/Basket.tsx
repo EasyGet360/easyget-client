@@ -7,10 +7,26 @@ const { Title } = Typography;
 
 export const Basket: React.FunctionComponent<BasketProps> = (props) => {
   const { addProduct, deleteProduct, products } = useContext(BasketContext);
+  const calculateBill = () => {
+    let count = 0;
+    products.forEach((product: ProductBasket) => {
+      count += product.price * product.howMuch;
+    });
+    return count;
+  };
 
   return (
     <Modal
-      title={'Basket'}
+      title={
+        <>
+          <Row>
+            <Col span={8}>Basket</Col>
+            <Col span={8} offset={8}>
+              {`Total: ${calculateBill()}$`}
+            </Col>
+          </Row>
+        </>
+      }
       bodyStyle={{ textAlign: 'center' }}
       centered
       width={500}
