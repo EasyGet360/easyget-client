@@ -1,20 +1,24 @@
 import React, { useReducer } from 'react';
+import PropTypes from 'prop-types';
 import BasketContext from './basketContext';
 import BasketReducer from './basketReducer';
-import PropTypes from 'prop-types';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 import { ADD_PRODUCT, DELETE_PRODUCT } from '../types';
 
 const BasketState = (props) => {
+  const [storedValue, setLocalStorage] = useLocalStorage('basket', []);
   const initialState = {
-    products: [],
+    products: storedValue || [],
   };
 
   const [state, dispatch] = useReducer(BasketReducer, initialState);
+  const { products } = state;
 
   const addProduct = (product) => {
     try {
       dispatch({ type: ADD_PRODUCT, payload: product });
+      setLocalStorage([...products, product]);
     } catch (error) {
       console.error(error);
     }
@@ -22,7 +26,8 @@ const BasketState = (props) => {
 
   const deleteProduct = (id) => {
     try {
-      const data = state.products.filter((product) => id !== product.id);
+      const data = products.filter((product) => id !== product.id);
+      setLocalStorage(data);
       dispatch({ type: DELETE_PRODUCT, payload: data });
     } catch (error) {}
   };
