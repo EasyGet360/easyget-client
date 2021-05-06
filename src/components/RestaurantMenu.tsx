@@ -26,9 +26,6 @@ const RestaurantMenu: React.FunctionComponent = () => {
   const [search, setSearch] = useState<string>('');
   const [filteredMenu, setFilteredMenu] = useState(restaurant_menu);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  console.log('🚀 --------------------------------------------------------------------------');
-  console.log('🚀 ~ file: RestaurantMenu.tsx ~ line 29 ~ setModalVisible', setModalVisible);
-  console.log('🚀 --------------------------------------------------------------------------');
 
   const [searchableMenu] = useState(
     restaurant_menu.map((category) => {
