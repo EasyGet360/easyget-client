@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Card, Typography, Input, Space, Row, Col, Select, Badge, Button } from 'antd';
 
 import { InstagramOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import data from '../data.json';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { AnchorTabs } from './ant/AnchorTabs';
 import { Categories } from './RestaurantMenu/Categories';
 import { Basket } from './RestaurantMenu/Basket';
 import { restaurant_menu } from '../models/instances';
+import BasketContext from '../context/basket/basketContext';
 
 const { Option } = Select;
 const { Link, Title } = Typography;
@@ -21,11 +23,17 @@ const defaultContext = {
 export const RestaurantMenuContext = React.createContext(defaultContext);
 
 const RestaurantMenu: React.FunctionComponent = () => {
-  const [table, setTable] = useState<string>();
+  const [storedValue, setLocalStorage] = useLocalStorage('table', 0);
   const [activeLink, setActiveLink] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [filteredMenu, setFilteredMenu] = useState(restaurant_menu);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const { clear } = useContext(BasketContext);
+
+  const handleChange = (e: any) => {
+    setLocalStorage(e || 0);
+    clear();
+  };
 
   const [searchableMenu] = useState(
     restaurant_menu.map((category) => {
@@ -81,9 +89,9 @@ const RestaurantMenu: React.FunctionComponent = () => {
           <Row gutter={10} align="middle" justify="space-between">
             <Col>
               <Select
-                placeholder="¿En qué mesa estás?"
                 size="large"
-                onChange={(e) => setTable(e.toString())}
+                defaultValue={storedValue > 0 ? storedValue : '¿En qué mesa estás?'}
+                onChange={(e) => handleChange(e)}
               >
                 <Option value={1}>Mesa 1</Option>
                 <Option value={2}>Mesa 2</Option>
@@ -109,7 +117,7 @@ const RestaurantMenu: React.FunctionComponent = () => {
             </Col>
           </Row>
 
-          {table && (
+          {storedValue > 0 && (
             <>
               <Title level={2}>Bienvenid@!</Title>
               <Search
