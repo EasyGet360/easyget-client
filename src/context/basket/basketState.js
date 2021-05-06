@@ -4,7 +4,7 @@ import BasketContext from './basketContext';
 import BasketReducer from './basketReducer';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
-import { ADD_PRODUCT, DELETE_PRODUCT } from '../types';
+import { ADD_PRODUCT, DELETE_PRODUCT, CLEAR_BASKET } from '../types';
 
 const BasketState = (props) => {
   const [storedValue, setLocalStorage] = useLocalStorage('basket', []);
@@ -24,6 +24,11 @@ const BasketState = (props) => {
     }
   };
 
+  const clear = () => {
+    setLocalStorage([]);
+    dispatch({ type: CLEAR_BASKET });
+  };
+
   const deleteProduct = (id) => {
     try {
       const data = products.filter((product) => id !== product.id);
@@ -38,6 +43,7 @@ const BasketState = (props) => {
         products: state.products,
         addProduct,
         deleteProduct,
+        clear,
       }}
     >
       <div>{props.children}</div>

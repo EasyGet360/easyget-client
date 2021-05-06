@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, DELETE_PRODUCT } from '../types';
+import { ADD_PRODUCT, DELETE_PRODUCT, CLEAR_BASKET } from '../types';
 
 export default (state, action) => {
   const { payload, type } = action;
@@ -12,6 +12,11 @@ export default (state, action) => {
       return {
         ...state,
         products: payload,
+      };
+    case CLEAR_BASKET:
+      return {
+        ...state,
+        products: [],
       };
     default:
       return state;
