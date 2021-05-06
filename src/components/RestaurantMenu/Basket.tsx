@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import BasketContext from '../../context/basket/basketContext';
-import { CardBasket } from './CardBasket';
+import { CardBasket } from './BasketCard';
 import { Card, Row, Col, Typography, Modal, Button, Tooltip } from 'antd';
 import { BasketProps, ProductBasket } from '../../models/types';
 const { Title } = Typography;

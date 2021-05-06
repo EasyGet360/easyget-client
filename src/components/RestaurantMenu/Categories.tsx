@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Card, Typography, Row, Col, Space } from 'antd';
 import { RestaurantMenuContext } from '../RestaurantMenu';
-import { ProductCard } from './ProductCard';
+import { ProductCard } from './ProdcutCard';
 
 const { Title, Paragraph } = Typography;
 
