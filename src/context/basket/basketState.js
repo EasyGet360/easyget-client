@@ -24,7 +24,7 @@ const BasketState = (props) => {
     }
   };
 
-  const clear = () => {
+  const clearContext = () => {
     setLocalStorage([]);
     dispatch({ type: CLEAR_BASKET });
   };
@@ -43,7 +43,7 @@ const BasketState = (props) => {
         products: state.products,
         addProduct,
         deleteProduct,
-        clear,
+        clearContext,
       }}
     >
       <div>{props.children}</div>

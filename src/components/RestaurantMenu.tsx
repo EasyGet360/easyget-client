@@ -23,16 +23,16 @@ const defaultContext = {
 export const RestaurantMenuContext = React.createContext(defaultContext);
 
 const RestaurantMenu: React.FunctionComponent = () => {
-  const [storedValue, setLocalStorage] = useLocalStorage('table', 0);
+  const [table, setTable] = useLocalStorage('table', 0);
   const [activeLink, setActiveLink] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const [filteredMenu, setFilteredMenu] = useState(restaurant_menu);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const { clear } = useContext(BasketContext);
+  const { clearContext } = useContext(BasketContext);
 
   const handleChange = (e: any) => {
-    setLocalStorage(e || 0);
-    clear();
+    setTable(e || 0);
+    clearContext();
   };
 
   const [searchableMenu] = useState(
@@ -90,7 +90,7 @@ const RestaurantMenu: React.FunctionComponent = () => {
             <Col>
               <Select
                 size="large"
-                defaultValue={storedValue > 0 ? storedValue : '¿En qué mesa estás?'}
+                defaultValue={table > 0 ? table : '¿En qué mesa estás?'}
                 onChange={(e) => handleChange(e)}
               >
                 <Option value={1}>Mesa 1</Option>
@@ -117,7 +117,7 @@ const RestaurantMenu: React.FunctionComponent = () => {
             </Col>
           </Row>
 
-          {storedValue > 0 && (
+          {table > 0 && (
             <>
               <Title level={2}>Bienvenid@!</Title>
               <Search
