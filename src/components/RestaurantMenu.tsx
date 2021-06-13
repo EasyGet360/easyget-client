@@ -28,7 +28,7 @@ const RestaurantMenu: React.FunctionComponent = () => {
   const [search, setSearch] = useState<string>('');
   const [filteredMenu, setFilteredMenu] = useState(restaurant_menu);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const { clearContext } = useContext(BasketContext);
+  const { clearContext, products } = useContext(BasketContext);
 
   const handleChange = (e: any) => {
     setTable(e || 0);
@@ -100,7 +100,7 @@ const RestaurantMenu: React.FunctionComponent = () => {
               </Select>
             </Col>
             <Col>
-              <Badge count={5}>
+              <Badge count={products.length}>
                 <Button
                   shape="circle"
                   icon={<ShoppingCartOutlined style={{ fontSize: '25px' }} />}
